@@ -23,53 +23,39 @@ export default {
     methods: {
         previous(){
             console.log("pa'trás")
-            console.log(articles)
+            
+            // articles[0] retorna el arreglo con la información deseada
+            articles[0].forEach(article => console.log(article))
         },
         next(){
             console.log("pa'lante")
-            console.log(articles)
+
+            // articles retorna un arreglo de un elemento, lo cual no es deseado
+            articles.forEach(article => console.log(article))
         }
     },
     data(){
-        return articles
+        return {
+            articles
+        }
     },
 }
 </script>
 
 <template>
-<section id="highlights" class="flex justify-center w-full">
+<section id="highlights" class="flex justify-center items-center w-full">
     <button id="button-previous" class="w-1/12" @click="previous">
         <img src="https://cdn-icons-png.flaticon.com/512/130/130882.png">
     </button>
-    <ul class="w-9/12">
-        <li>
-            <div
-            class="highlight-show text-sky-400 bg-cover bg-center bg-no-repeat flex flex-col items-end place-content-end"
-            style="background-image:url(https://picsum.photos/id/237/1000/1200); block-size: 40vw;">
-                <p class="title text-6xl font-serif">España ganó</p>
-                <p class="author text-2xl italic">Luis Enrique</p>
-                <p class="source">Google News</p>
-            </div>
-        </li>
-        <li>
-            <div
-            class="hidden highlight-show text-sky-400 bg-cover bg-center bg-no-repeat flex flex-col items-end place-content-end"
-            style="background-image:url(https://picsum.photos/id/236/1000/1200); block-size: 40vw;">
-                <p class="title text-6xl font-serif">España perdió</p>
-                <p class="author text-2xl italic">Luis Enrique</p>
-                <p class="source">Google News</p>
-            </div>
-        </li>
-        <li>
+    <div v-for="(article, index) in articles[0]" :key="index" class="w-9/12">
         <div
-        class="hidden highlight-show text-sky-400 bg-cover bg-center bg-no-repeat flex flex-col items-end place-content-end"
-        style="background-image:url(https://picsum.photos/id/235/1000/1200); block-size: 40vw;">
-            <p class="title text-6xl font-serif">España empató</p>
-            <p class="author text-2xl italic">Luis Enrique</p>
-            <p class="source">Google News</p>
+        class="highlight-show text-sky-400 bg-cover bg-center bg-no-repeat flex flex-col items-end place-content-end"
+        :style="{ 'background-image': 'url(' + article.urlToImage + ')' }">
+            <p class="title text-6xl font-serif">{{ article.title }}</p>
+            <p class="author text-2xl italic">{{ article.author }}</p>
+            <p class="source">{{ article.source.name }}</p>
         </div>
-    </li>
-    </ul>
+    </div>
     <button id="button-next" class="w-1/12" @click="next">
         <img src="https://cdn-icons-png.flaticon.com/512/130/130884.png">
     </button>
