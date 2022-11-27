@@ -1,14 +1,20 @@
 <script>
+import axios from 'axios'
+
 const apikey = "03688902f4484c859e95e2fdae559147"
 const country = "VE"
 const URL = 'https://newsapi.org/v2/top-headlines?' +
             'country=' + country + '&' +
             'apiKey=' + apikey
 
-fetch(URL)
-    .then(response => response.json())
-    .then(data => {
+axios.get(URL)
+    .then(response => {
+        const data = response.data
+
         console.log(data.articles)
+    })
+    .catch((error) => {
+        console.log(error)
     })
 
 export default {
