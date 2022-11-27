@@ -7,11 +7,12 @@ const URL = 'https://newsapi.org/v2/top-headlines?' +
             'country=' + country + '&' +
             'apiKey=' + apikey
 
+let articles = []
+
 axios.get(URL)
     .then(response => {
         const data = response.data
-
-        console.log(data.articles)
+        articles.push(data.articles)
     })
     .catch((error) => {
         console.log(error)
@@ -22,11 +23,16 @@ export default {
     methods: {
         previous(){
             console.log("pa'trás")
+            console.log(articles)
         },
         next(){
             console.log("pa'lante")
+            console.log(articles)
         }
-    }
+    },
+    data(){
+        return articles
+    },
 }
 </script>
 
