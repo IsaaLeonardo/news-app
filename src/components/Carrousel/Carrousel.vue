@@ -36,18 +36,27 @@ export default {
     },
     data(){
         return {
-            articles
-        }
+            articles,
+            visibleItem: 0
+        };
     },
 }
 </script>
 
 <template>
 <section id="highlights" class="flex justify-center items-center w-full">
+
     <button id="button-previous" class="w-1/12" @click="previous">
         <img src="https://cdn-icons-png.flaticon.com/512/130/130882.png">
     </button>
-    <div v-for="(article, index) in articles[0]" :key="index" class="w-9/12">
+
+    <div
+        v-for="(article, index) in articles[0]"
+        :key="index"
+        :index="index"
+        v-show="visibleItem == index"
+        class="w-9/12"
+    >
         <div
         class="highlight-show text-sky-400 bg-cover bg-center bg-no-repeat flex flex-col items-end place-content-end"
         :style="{ 'background-image': 'url(' + article.urlToImage + ')' }">
@@ -56,8 +65,10 @@ export default {
             <p class="source">{{ article.source.name }}</p>
         </div>
     </div>
+
     <button id="button-next" class="w-1/12" @click="next">
         <img src="https://cdn-icons-png.flaticon.com/512/130/130884.png">
     </button>
+
 </section>
 </template>
