@@ -64,7 +64,7 @@ export default {
             class="result h-36 p-3 border border-red-500 border-solid flex gap-3"
         >
             <img
-            src="https://picsum.photos/id/237/200/300"
+            :src="article.urlToImage"
             alt=""
             class="w-1/6"
             >
