@@ -11,7 +11,7 @@ export default {
 </script>
 
 <template>
-<h1 class="text-8xl font-serif">Periódico Digital</h1>
+<h1 class="text-4xl font-serif">Periódico Digital</h1>
 
 <Carrousel />
 

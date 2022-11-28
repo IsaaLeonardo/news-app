@@ -48,7 +48,7 @@ export default {
 <template>
 <section id="highlights" class="flex justify-center items-center w-full">
 
-    <button id="button-previous" class="w-1/12" @click="previous">
+    <button id="button-previous" class="w-16" @click="previous">
         <img src="https://cdn-icons-png.flaticon.com/512/130/130882.png">
     </button>
 
@@ -57,20 +57,26 @@ export default {
         :key="index"
         :index="index"
         v-show="visibleItem == index"
-        class="w-9/12"
+        class="w-9/12 max-w-3xl h-96"
     >
         <div
-        class="highlight-show text-sky-400 bg-cover bg-center bg-no-repeat flex flex-col items-end place-content-end"
+        class="highlight-show h-full text-right text-sky-400 bg-cover bg-center bg-no-repeat flex flex-col items-end place-content-end"
         :style="{ 'background-image': 'url(' + article.urlToImage + ')' }">
-            <p class="title text-6xl font-serif">{{ article.title }}</p>
+            <p class="title w-9/12 text-4xl pt-44 font-serif">{{ article.title }}</p>
             <p class="author text-2xl italic">{{ article.author }}</p>
             <p class="source">{{ article.source.name }}</p>
         </div>
     </div>
 
-    <button id="button-next" class="w-1/12" @click="next">
+    <button id="button-next" class="w-16" @click="next">
         <img src="https://cdn-icons-png.flaticon.com/512/130/130884.png">
     </button>
 
 </section>
 </template>
+
+<style>
+.highligh-show {
+    block-size: 40vh;
+}
+</style>
