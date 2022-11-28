@@ -3,26 +3,6 @@ import axios from 'axios'
 
 const apikey = "03688902f4484c859e95e2fdae559147"
 
-const searchData = () => {
-    const URL = 'https://newsapi.org/v2/everything?' +
-                'q=' + 'búsqueda a realizar' + '&' +
-                'apiKey=' + apikey
-    
-
-    axios.get(URL)
-        .then(response =>{
-            const data = response.data
-
-            console.log('All ok')
-            console.log(URL)
-
-        })
-        .catch(error => {
-            console.log('All its not ok')
-            console.log(URL)
-        })
-}
-
 export default {
     name: 'finder',
     data() {
@@ -31,7 +11,26 @@ export default {
         }
     },
     methods: {
-        searchData
+        searchData() {
+            const URL = 'https://newsapi.org/v2/everything?' +
+                'q=' + this.search + '&' +
+                'apiKey=' + apikey
+    
+
+            axios.get(URL)
+                .then(response =>{
+                    const data = response.data
+
+                    console.log('All ok')
+                    console.log(data)
+                    console.log(URL)
+
+                })
+                .catch(error => {
+                    console.log('All its not ok')
+                    console.log(URL)
+                })
+        }
     },
 }
 </script>
