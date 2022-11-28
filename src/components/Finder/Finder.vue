@@ -1,8 +1,6 @@
 <script>
 import axios from 'axios'
 
-const apikey = "03688902f4484c859e95e2fdae559147"
-
 export default {
     name: 'finder',
     data() {
@@ -12,10 +10,11 @@ export default {
     },
     methods: {
         searchData() {
+            const apikey = "03688902f4484c859e95e2fdae559147"
+            const input = this.search.replaceAll(" ", "+")
             const URL = 'https://newsapi.org/v2/everything?' +
-                'q=' + this.search + '&' +
-                'apiKey=' + apikey
-    
+                        'q=' + input + '&' +
+                        'apiKey=' + apikey
 
             axios.get(URL)
                 .then(response =>{
