@@ -57,7 +57,25 @@ export default {
 
     <!-- El height debe ser cambiado por un valor relativo cuando empiece a cargar noticias -->
     <div class="results w-full h-96 border border-black border-solid">
-
+      <p id="total-results" class="p-3">'x' resultados totales para "búsqueda"</p>
+        <div
+            class="result h-36 p-3 border border-red-500 border-solid flex gap-3"
+        >
+            <img
+            src="https://picsum.photos/id/237/200/300"
+            alt=""
+            class="w-1/6"
+            >
+            <div class="result-info">
+                <h2 class="title text-xl mb-1">España Ganó</h2>
+                <div class="owner flex">
+                    <p class="source">Google news</p>
+                    <span>&nbsp;-&nbsp;</span>
+                    <p class="author italic">Luis Enrique</p>
+                </div>
+                <p class="date">10 de noviembre del 2022</p>
+            </div>
+        </div>
     </div>
 </section>
 </template>
