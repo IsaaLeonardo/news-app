@@ -57,7 +57,7 @@ export default {
         :key="index"
         :index="index"
         v-show="visibleItem == index"
-        class="w-9/12 max-w-3xl h-96"
+        class="w-9/12 max-w-3xl h-96 cursor-pointer"
     >
         <div
         class="highlight-show h-full text-right text-sky-400 bg-cover bg-center bg-no-repeat flex flex-col items-end place-content-end"

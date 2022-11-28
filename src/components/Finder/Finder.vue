@@ -38,6 +38,13 @@ export default {
 <template>
 <section id="everything" class="w-full max-w-2xl mt-3 flex flex-col items-center gap-3">
     <div class="input-finder w-80 h-10 p-2 border border-black border-solid flex gap-2">
+        <button
+            class="flex-none pointer-events-auto"
+            id="start-search"
+            @click="getData"
+        >
+            <img class="h-3/4" src="https://cdn-icons-png.flaticon.com/512/3031/3031293.png" alt="Ícono de lupa">
+        </button>
         <input 
             type="text"
             name=""
@@ -47,13 +54,6 @@ export default {
             v-model.trim="search"
             @keyup.enter="getData"
         />
-        <button
-            class="flex-none"
-            id="start-search"
-            @click="getData"
-        >
-            <img class="h-3/4" src="https://cdn-icons-png.flaticon.com/512/3031/3031293.png" alt="Ícono de lupa">
-        </button>
     </div>
 
     <div v-show="data.length != 0" class="results w-full border border-black border-solid">
@@ -61,14 +61,14 @@ export default {
         <div
             v-for="(article, index) in data.articles"
             :key="index"
-            class="result h-36 p-3 border border-red-500 border-solid flex gap-3"
+            class="result h-36 p-1 m-1 border-solid flex gap-3 cursor-pointer"
         >
             <img
             :src="article.urlToImage"
             alt=""
-            class="w-1/6"
+            class="w-1/6 flex-none"
             >
-            <div class="result-info">
+            <div class="result-info flex-auto">
                 <h2 class="title text-xl mb-1">{{article.title}}</h2>
                 <div class="owner flex">
                     <p class="source">{{article.source.name}}</p>
