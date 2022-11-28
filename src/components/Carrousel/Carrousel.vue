@@ -22,16 +22,18 @@ export default {
     name: 'carrousel',
     methods: {
         previous(){
-            console.log("pa'trás")
-            
-            // articles[0] retorna el arreglo con la información deseada
-            articles[0].forEach(article => console.log(article))
+            if(this.visibleItem == 0){
+                this.visibleItem = 10;
+            } else {
+                this.visibleItem--
+            }
         },
         next(){
-            console.log("pa'lante")
-
-            // articles retorna un arreglo de un elemento, lo cual no es deseado
-            articles.forEach(article => console.log(article))
+            if(this.visibleItem == 10){
+                this.visibleItem = 0;
+            } else {
+                this.visibleItem++
+            }
         }
     },
     data(){
