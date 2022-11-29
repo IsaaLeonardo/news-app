@@ -35,6 +35,7 @@ export default {
     methods: {
         getData(values) {
             console.log(JSON.stringify(values, null, 2))
+            this.data = []
             this.search = values.search
 
             const apikey = "03688902f4484c859e95e2fdae559147"
@@ -48,15 +49,21 @@ export default {
             
             axios.get(URL)
                 .then(response =>{
-                    this.data = response.data
-                    response.data.articles.forEach(article => {
-                        const formatDate = moment(article.publishedAt)
-                        this.dates.push(formatDate.format('D MMMM YYYY'))
-                    })
+                    // Verificando si la búsqueda entrega algún resultado
+                    if(response.data.articles.length == 0){
+                        alert("Lo siento, su búsqueda no encontró algún resultado")
+                    } else {
+                        this.data = response.data
+                        response.data.articles.forEach(article => {
+                            const formatDate = moment(article.publishedAt)
+                            this.dates.push(formatDate.format('D MMMM YYYY'))
+                        })
+    
+                        console.log('Se realizó la petición a:')
+                        console.log(URL)
+                        console.log(this.data)
+                    }
 
-                    console.log('Se realizó la petición a:')
-                    console.log(URL)
-                    console.log(this.data)
                 })
                 .catch(error => {
                     console.log(error)
