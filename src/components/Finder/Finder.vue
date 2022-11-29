@@ -109,10 +109,11 @@ export default {
     
     <div v-show="data.length != 0" class="results w-full border border-black border-solid">
       <p id="total-results" class="p-3">{{data.totalResults}} resultados para "{{search}}"</p>
-        <div
+        <router-link
             v-for="(article, index) in data.articles"
             :key="index"
-            class="result h-36 p-1 m-1 border-solid flex gap-3 cursor-pointer"
+            to="/details"
+            class="result h-36 p-1 m-1 border-solid flex gap-3"
         >
             <img
             :src="article.urlToImage"
@@ -128,7 +129,7 @@ export default {
                 </div>
                 <p class="date">{{dates[index]}}</p>
             </div>
-        </div>
+        </router-link>
     </div>
 </section>
 </template>

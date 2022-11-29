@@ -6,6 +6,5 @@ export default {
 
 <template>
 <h1 class="text-4xl font-serif">Periódico Digital</h1>
-<!-- <router-link to="/details">Go to Details</router-link> -->
 <router-view></router-view>
 </template>
