@@ -1,19 +1,11 @@
 <script>
-// import { RouterLink, RouterView } from 'vue-router'
-
-import Carrousel from "./components/Carrousel/Carrousel.vue"
-import Finder from "./components/Finder/Finder.vue"
-
 export default {
-    name: "app",
-    components: { Carrousel, Finder }
+    name: "app"
 }
 </script>
 
 <template>
 <h1 class="text-4xl font-serif">Periódico Digital</h1>
-
-<Carrousel />
-
-<Finder />
+<!-- <router-link to="/details">Go to Details</router-link> -->
+<router-view></router-view>
 </template>

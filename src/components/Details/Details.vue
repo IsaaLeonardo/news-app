@@ -14,6 +14,7 @@ export default {
 </script>
 
 <template>
+    <router-link to="/">Go to Home</router-link>
     <h2>{{ title }}</h2>
     <p>{{ date }}</p>
     <img :src="image" alt="">
