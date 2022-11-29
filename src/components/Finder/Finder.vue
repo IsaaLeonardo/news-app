@@ -2,6 +2,7 @@
 import axios from 'axios'
 import { Form, Field, ErrorMessage } from 'vee-validate';
 import { defineRule } from 'vee-validate';
+import moment from 'moment';
 
 defineRule('required', value => {
   if (!value || !value.length) {
@@ -27,7 +28,8 @@ export default {
     data() {
         return {
             search: "",
-            data: []
+            data: [],
+            dates: []
         }
     },
     methods: {
@@ -47,6 +49,11 @@ export default {
             axios.get(URL)
                 .then(response =>{
                     this.data = response.data
+                    response.data.articles.forEach(article => {
+                        const formatDate = moment(article.publishedAt)
+                        this.dates.push(formatDate.format('D MMMM YYYY'))
+                    })
+
                     console.log('Se realizó la petición a:')
                     console.log(URL)
                     console.log(this.data)
@@ -99,7 +106,7 @@ export default {
                     <span>&nbsp;-&nbsp;</span>
                     <p class="author italic">{{article.author}}</p>
                 </div>
-                <p class="date">{{article.publishedAt}}</p>
+                <p class="date">{{dates[index]}}</p>
             </div>
         </div>
     </div>
