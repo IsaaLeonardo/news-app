@@ -1,12 +1,28 @@
 <script>
 import axios from 'axios'
-import { Form, Field } from 'vee-validate';
+import { Form, Field, ErrorMessage } from 'vee-validate';
+import { defineRule } from 'vee-validate';
+
+defineRule('required', value => {
+  if (!value || !value.length) {
+    return 'Necesita ingresar algún término de búsqueda';
+  }
+  return true;
+});
+
+defineRule('minLength', (value, limit) => {
+  if (value.length < limit) {
+    return `El término de búsqueda debe ser de al menos ${limit} caracteres`;
+  }
+  return true;
+});
 
 export default {
     name: 'finder',
     components: {
         Form,
         Field,
+        ErrorMessage
     },
     data() {
         return {
@@ -45,7 +61,7 @@ export default {
 
 <template>
 <section id="everything" class="w-full max-w-2xl mt-3 flex flex-col items-center gap-3">
-    <Form @submit="getData" class="input-finder w-80 h-10 p-2 border border-black border-solid flex gap-2">
+    <Form @submit="getData" class="input-finder w-80 h-10 p-2 border border-black border-solid flex gap-2 flex-wrap">
         <button
             class="flex-none pointer-events-auto"
             id="start-search"
@@ -58,8 +74,10 @@ export default {
             name="search"
             id=""
             placeholder="Buscar"
+            rules="required|minLength:3"
             class="flex-auto"
         />
+        <ErrorMessage name="search" />
     </Form>
 
     <div v-show="data.length != 0" class="results w-full border border-black border-solid">
@@ -87,3 +105,10 @@ export default {
     </div>
 </section>
 </template>
+
+<style>
+#start-search {
+    max-inline-size: 15px;
+    max-block-size: 20px;
+}
+</style>
