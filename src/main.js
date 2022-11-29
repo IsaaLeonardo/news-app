@@ -8,7 +8,7 @@ import './assets/main.css'
 
 const routes = [
     { path: '/', component: Home },
-    { path: '/details', component: Details },
+    { path: '/details/:id', component: Details },
 ]
 
 const router = createRouter({

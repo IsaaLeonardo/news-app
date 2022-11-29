@@ -59,7 +59,7 @@ export default {
         :key="index"
         :index="index"
         v-show="visibleItem == index"
-        to="/details"
+        :to="{path:`details/${index + 1}`}"
         class="w-9/12 max-w-3xl h-96"
     >
         <div
