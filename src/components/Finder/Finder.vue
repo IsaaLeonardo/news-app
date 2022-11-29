@@ -1,8 +1,13 @@
 <script>
 import axios from 'axios'
+import { Form, Field } from 'vee-validate';
 
 export default {
     name: 'finder',
+    components: {
+        Form,
+        Field,
+    },
     data() {
         return {
             search: "",
@@ -10,16 +15,19 @@ export default {
         }
     },
     methods: {
-        async getData() {
+        getData(values) {
+            console.log(JSON.stringify(values, null, 2))
+            this.search = values.search
+
             const apikey = "03688902f4484c859e95e2fdae559147"
-            const input = this.search.replaceAll(" ", "+")
+            const input = values.search.replaceAll(" ", "+")
             const URL = 'https://newsapi.org/v2/everything?' +
                         'q=' + input + '&' +
                         'language=' + 'es' + '&' +
                         `searchIn=` + 'title' + '&' +
                         'sortBy=' + 'popularity' + '&' +
                         'apiKey=' + apikey
-
+            
             axios.get(URL)
                 .then(response =>{
                     this.data = response.data
@@ -37,24 +45,22 @@ export default {
 
 <template>
 <section id="everything" class="w-full max-w-2xl mt-3 flex flex-col items-center gap-3">
-    <div class="input-finder w-80 h-10 p-2 border border-black border-solid flex gap-2">
+    <Form @submit="getData" class="input-finder w-80 h-10 p-2 border border-black border-solid flex gap-2">
         <button
             class="flex-none pointer-events-auto"
             id="start-search"
-            @click="getData"
+            type="submit"
         >
             <img class="h-3/4" src="https://cdn-icons-png.flaticon.com/512/3031/3031293.png" alt="Ícono de lupa">
         </button>
-        <input 
+        <Field 
             type="text"
-            name=""
+            name="search"
             id=""
             placeholder="Buscar"
             class="flex-auto"
-            v-model.trim="search"
-            @keyup.enter="getData"
         />
-    </div>
+    </Form>
 
     <div v-show="data.length != 0" class="results w-full border border-black border-solid">
       <p id="total-results" class="p-3">{{data.totalResults}} resultados para "{{search}}"</p>
