@@ -1,6 +1,7 @@
 <script>
 import axios from 'axios'
 import { Form, Field, ErrorMessage } from 'vee-validate';
+import Details from '../Details/Details.vue'
 import { defineRule } from 'vee-validate';
 import moment from 'moment';
 
@@ -23,7 +24,8 @@ export default {
     components: {
         Form,
         Field,
-        ErrorMessage
+        ErrorMessage,
+        Details
     },
     data() {
         return {

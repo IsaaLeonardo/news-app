@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios'
+import Details from '../Details/Details.vue'
 
 const apikey = "03688902f4484c859e95e2fdae559147"
 const country = "VE"
@@ -20,6 +21,7 @@ axios.get(URL)
 
 export default {
     name: 'carrousel',
+    components: { Details },
     methods: {
         previous(){
             if(this.visibleItem == 0){
