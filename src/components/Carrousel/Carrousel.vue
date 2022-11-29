@@ -25,13 +25,13 @@ export default {
     methods: {
         previous(){
             if(this.visibleItem == 0){
-                this.visibleItem = 10;
+                this.visibleItem = 9;
             } else {
                 this.visibleItem--
             }
         },
         next(){
-            if(this.visibleItem == 10){
+            if(this.visibleItem == 9){
                 this.visibleItem = 0;
             } else {
                 this.visibleItem++
